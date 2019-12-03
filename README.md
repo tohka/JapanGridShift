@@ -34,7 +34,7 @@ $ echo 140.026224 38.546789 | cs2cs -v -f '%.10f' +proj=latlong +ellps=bessel +t
 *Format*: NTv2  
 *License*: [Geospatial Information Authority of Japan Website Terms of Use](https://www.gsi.go.jp/ENGLISH/page_e30286.html) (compatible with the Creative Commons Attribution License 4.0)  
 
-* touhokutaiheiyouoki2011.gsb (converted from [touhokutaiheiyouoki2011.par] (https://www.gsi.go.jp/sokuchikijun/sokuchikijun41012.html#zahyo) Ver.4.0.0)
+* touhokutaiheiyouoki2011.gsb (converted from [touhokutaiheiyouoki2011.par](https://www.gsi.go.jp/sokuchikijun/sokuchikijun41012.html#zahyo) Ver.4.0.0)
 
 #### check transformation
 
