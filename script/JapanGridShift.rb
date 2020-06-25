@@ -1,5 +1,6 @@
-#!/usr/bin/ruby
+#!/usr/local/bin/ruby
 
+require 'yaml'
 
 GRS80_a  = 6378137.0
 GRS80_F  = 298.257222101
@@ -9,37 +10,38 @@ BESSEL_F = 299.1528128
 BESSEL_b = BESSEL_a * (1.0 - 1.0 / BESSEL_F)
 
 def main
-	# Tokyo Datum to JGD2000
-	convert('TKY2JGD.par', 'tky2jgd.gsb', {
-			'VERSION'  => '2.1.2',
-			'SYSTEM_F' => 'Tokyo',
-			'MAJOR_F'  => BESSEL_a,
-			'MINOR_F'  => BESSEL_b,
-			'SYSTEM_T' => 'JGD2000',
-			'MAJOR_T'  => GRS80_a,
-			'MINOR_T'  => GRS80_b,
-			'CREATED'  => '20010301',
-			'UPDATED'  => '20031007'
-	})
+	param_file = 'parameter_list.yml'
+	if FileTest.exist?(param_file)
+		params = YAML.load(IO.read(param_file))
 
-	# JGD2000 to JGD2011
-	convert('touhokutaiheiyouoki2011.par', 'touhokutaiheiyouoki2011.gsb', {
-			'VERSION'  => '4.0.0',
-			'SYSTEM_F' => 'JGD2000',
-			'MAJOR_F'  => GRS80_a,
-			'MINOR_F'  => GRS80_b,
-			'SYSTEM_T' => 'JGD2011',
-			'MAJOR_T'  => GRS80_a,
-			'MINOR_T'  => GRS80_b,
-			'CREATED'  => '20111031',
-			'UPDATED'  => '20171205'
-	})
+		params.each do |opts|
+			par_file = opts['NAME'] + '.par'
+			gsb_file = opts['NAME'] + '.gsb'
+			if FileTest.exist?(par_file)
+				if opts['SYSTEM_F'] == 'Tokyo'
+					opts['MAJOR_F'] = BESSEL_a
+					opts['MINOR_F'] = BESSEL_b
+				else
+					opts['MAJOR_F'] = GRS80_a
+					opts['MINOR_F'] = GRS80_b
+				end
+				if opts['SYSTEM_T'] == 'Tokyo'
+					opts['MAJOR_T'] = BESSEL_a
+					opts['MINOR_T'] = BESSEL_b
+				else
+					opts['MAJOR_T'] = GRS80_a
+					opts['MINOR_T'] = GRS80_b
+				end
+				puts "converting... #{par_file}"
+				gs = JapanGridShift.new(par_file)
+				gs.to_gsb(gsb_file, opts)
+			end
+		end
+	else
+		$stderr.puts "No such file - #{param_file}"
+	end
 end
 
-def convert(par_file, gsb_file, opts)
-	gs = JapanGridShift.new(par_file)
-	gs.to_gsb(gsb_file, opts)
-end
 
 
 class JapanGridShift
@@ -133,10 +135,10 @@ class JapanGridShift
 	def cols; @cols; end
 	def size; @rows * @cols; end
 
-	def char8(v = '' ); (v.strip + '        ')[0, 8]; end
-	def int4 (v = 0  ); [v].pack('V'); end
-	def real4(v = 0.0); [v].pack('e'); end
-	def real8(v = 0.0); [v].pack('E'); end
+	def char8(v = '' ); (v.to_s.strip + '        ')[0, 8]; end
+	def int4 (v = 0  ); [v.to_i].pack('V'); end
+	def real4(v = 0.0); [v.to_f].pack('e'); end
+	def real8(v = 0.0); [v.to_f].pack('E'); end
 end
 
 main
