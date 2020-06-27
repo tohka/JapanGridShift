@@ -1,5 +1,7 @@
 # proj-datumgrid-japan
 
+→ [日本語の README](README.ja.md)
+
 The Japanese datumgrid files for Proj 5.x, 6.x.
 
 ## datumgrid files
