@@ -115,3 +115,15 @@ Grid data for correction of changes caused by the Kumamoto earthquake in 2016.
 
 * kumamoto2016\_BL.gsb (converted from [kumamoto2016\_BL.par](https://www.gsi.go.jp/sokuchikijun/sokuchikijun41012.html#zahyo) Ver.1.0.0)
 
+
+
+### noto2024\_BL.gsb
+
+*Source*: [Geospatial Information Authority of Japan](https://www.gsi.go.jp/sokuchikijun/sokuchikijun41012.html#zahyo)  
+*Format*: NTv2  
+*License*: [Geospatial Information Authority of Japan Website Terms of Use](https://www.gsi.go.jp/ENGLISH/page_e30286.html) (compatible with CC BY 4.0)  
+
+Grid data for correction of changes caused by the Noto Peninsula earthquake in 2024.
+
+* noto2024\_BL.gsb (converted from [noto2024\_BL.par](https://www.gsi.go.jp/sokuchikijun/sokuchikijun41012.html#zahyo) Ver.1.0.1)
+
