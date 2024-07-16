@@ -22,6 +22,18 @@
 
 
 
+## 令和6年能登半島地震に伴う取り扱いについて
+
+同一の地震に対し複数の補正パラメータが公開されています。補正パラメータの利用にあたっては留意すべき事項等があるため、下記ページ等をご確認ください。
+
+- [令和6年能登半島地震に伴う基準点成果の取扱いについて](https://www.gsi.go.jp/sokuchikijun/R6-notopeninsula-earthquake-seika.html)
+- [「令和６年能登半島地震」における公共測量への対応](https://www.gsi.go.jp/KOUKYOU/koukyo0031.html)
+- [座標標高補正パラメータファイル一覧](https://www.gsi.go.jp/sokuchikijun/sokuchikijun41012.html)
+  - [noto2024_BL.par Ver.1.0.1 ヘッダー情報](https://www.gsi.go.jp/common/000255386.txt)
+  - [noto2024_02BL.par Ver.1.0.1 ヘッダー情報](https://www.gsi.go.jp/common/000259856.txt)
+
+
+
 ## 変換スクリプト
 
 国土地理院から新しいパラメータファイルの提供、あるいは既存ファイルの改定が行われることがあります。そのような場合は、リポジトリ内のスクリプトを使用して NTv2 (gsb) ファイルに変換することができます。
